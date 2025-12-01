@@ -11,6 +11,7 @@ const prisma = new PrismaClient({ adapter })
 
 const app=express();
 const port = 3000;
+app.use(express.json())
 
 app.get("/" , async (req , res)=>{
     const email = await req.body.email
@@ -35,8 +36,8 @@ app.post("/insert" , async (req , res)=>{
 
  const user_id =  await  prisma.user.create({
         data:{
-            email : email, 
-            password : password
+            email , 
+            password 
         } , select:{
             id : true 
         }
